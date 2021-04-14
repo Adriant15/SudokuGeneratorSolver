@@ -142,9 +142,15 @@ class Sudoku {
         }
     }
 
+    private boolean checkGridSize(){
+        return (this.puzzle[0].length == 9 && this.puzzle.length == 9);
+    }
+
     //Solves the puzzle and counts the number of possible solutions.
     //If saveSolutions is true, all solutions found are saved into an ArrayList
     private boolean solvePuzzle(Integer[][] grid, boolean saveSolutions){
+        if (this.puzzle[0].length != 9 || this.puzzle.length != 9)
+            return false;
         for (int i = 0; i < 81; ++i) {
             int row = i / 9;
             int col = i % 9;
@@ -210,6 +216,11 @@ class Sudoku {
 
     //Print input 9X9 sudoku puzzle
     private void printPuzzle(Integer[][] grid){
+        if (grid[0].length != 9 || grid.length != 9) {
+            System.out.println("Invalid puzzle size");
+            return;
+        }
+
         String gridSepX = "|--------------------------------|";
         String gridSepY = "|----------+----------+----------|";
 
@@ -287,8 +298,7 @@ public class SudokuGeneratorSolver {
             { 6, 1, 2, 3, 8, 7, 4, 9, 5 },
             { 5, 4, 9, 2, 1, 6, 7, 3, 8 },
             { 7, 6, 3, 5, 3, 4, 1, 8, 9 },
-            { 9, 2, 8, 6, 7, 1, 3, 5, 4 },
-            { 1, 5, 4, 9, 3, 8, 6, 0, 0 }
+            { 9, 2, 8, 6, 7, 1, 3, 5, 4 }
     };
 
     public static void main(String[] args){
